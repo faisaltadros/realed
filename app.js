@@ -1,15 +1,17 @@
-var express = require("express"),
-   app = express(),
-   bodyParser = require("body-parser"),
-   mongoose = require("mongoose"),
-   flash = require("connect-flash"),
-   passport = require("passport"),
-   LocalStrategy = require("passport-local"),
-   methodOverride = require("method-override"),
-   Campground = require("./models/campground"),
-   Comment = require("./models/comment"),
-   User = require("./models/user"),
-   seedDB = require("./seeds")
+var   express = require("express"),
+      app = express(),
+      bodyParser = require("body-parser"),
+      mongoose = require("mongoose"),
+      flash = require("connect-flash"),
+      passport = require("passport"),
+      LocalStrategy = require("passport-local"),
+      methodOverride = require("method-override"),
+      Campground = require("./models/campground"),
+      Comment = require("./models/comment"),
+      User = require("./models/user"),
+      seedDB = require("./seeds")
+
+      mongoose.set("useFindAndModify", false);
 
 //requiring routes
 var commentRoutes = require("./routes/comments"),
@@ -18,7 +20,7 @@ var commentRoutes = require("./routes/comments"),
 
 // mongoose.connect("mongodb://localhost/yelp_camp_v10");
 
-mongoose.connect("mongodb+srv://faisal1234:faisal2345@cluster0-ub6wn.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://faisal1234:faisal2345@cluster0-ub6wn.mongodb.net/yelp_camp_dep?retryWrites=true", { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
