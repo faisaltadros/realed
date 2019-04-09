@@ -134,8 +134,8 @@ router.put("/:id", middleware.checkCampgroundOwnership, function (req, res) {
         req.body.campground.location = data[0].formattedAddress;
 
         Campground.findByIdAndUpdate(req.params.id, req.body.campground, function (err, campground) {
-        // var newData = { name: req.body.name, image: req.body.image, description: req.body.desc, location: req.body.campground.location, lat: req.body.campground.lat, lng: req.body.campground.lng };
-        // Campground.findByIdAndUpdate(req.params.id, { $set: newData }, function (err, campground) {
+            // var newData = { name: req.body.name, image: req.body.image, description: req.body.desc, location: req.body.campground.location, lat: req.body.campground.lat, lng: req.body.campground.lng };
+            // Campground.findByIdAndUpdate(req.params.id, { $set: newData }, function (err, campground) {
             if (err) {
                 req.flash("error", err.message);
                 res.redirect("back");
