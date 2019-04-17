@@ -1,17 +1,21 @@
-var   express = require("express"),
-      app = express(),
-      bodyParser = require("body-parser"),
-      mongoose = require("mongoose"),
-      flash = require("connect-flash"),
-      passport = require("passport"),
-      LocalStrategy = require("passport-local"),
-      methodOverride = require("method-override"),
-      Campground = require("./models/campground"),
-      Comment = require("./models/comment"),
-      User = require("./models/user"),
-      seedDB = require("./seeds")
+var express = require("express"),
+   app = express(),
+   bodyParser = require("body-parser"),
+   mongoose = require("mongoose"),
+   flash = require("connect-flash"),
+   passport = require("passport"),
+   LocalStrategy = require("passport-local"),
+   methodOverride = require("method-override"),
+   Campground = require("./models/campground"),
+   Comment = require("./models/comment"),
+   User = require("./models/user"),
+   seedDB = require("./seeds")
 
-      mongoose.set("useFindAndModify", false);
+mongoose.set("useFindAndModify", false);
+// to stop DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes iated. Use createIndexes instead. 
+mongoose.set('useCreateIndex', true);
+
+require('dotenv').config()
 
 //requiring routes
 var commentRoutes = require("./routes/comments"),

@@ -1,30 +1,199 @@
-<% include ../partials/header %> 
+<!DOCTYPE html>
+<html>
 
-     <header class="jumbotron">
-         <div class="container">
-             <h1>Welcome To YelpCamp!</h1>
-             <p>View our hand-picked campgrounds from all over the world</p>
-             <p>
-                <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground</a>
-             </p>
-         </div>
-     </header>
-     
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+<head>
+    <!-- Make site responsive on mobile/tablet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YelpCamp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-custom ">
+        <a href="/" class="pull-left">
+            <img class="img-fluid nav-logo"
+                src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555107462/flava.png" width="25" height="25"
+                alt="">
+        </a>
+        <a class="navbar-brand mr-2" href="/">realed</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
+                    <a href="/campgrounds" class="nav-link">Home</a>
+                </li>
+                <% if(currentUser){ %>
+                <li class="nav-item">
+                    <a href="/campgrounds/new" class="nav-link add-property">Add New Property</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a href="/campgrounds/new" class="nav-link ">Add New Property</a>
+                </li>
+                <% } %>
+            </ul>
+            <ul class="navbar-nav">
+                <% if(!currentUser){ %>
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
+                    <a href="/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
+                    <a href="/register" class="nav-link">Sign Up</a>
+                </li>
+                <% } else { %>
+
+                <li class="nav-item">
+                    <a href="/users/<%= currentUser.id %>" class="nav-link">Signed In As <%= currentUser.username %></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <div id="page-container">
+
+
+        <div class="" id="content-wrap">
+
+<!-- <header class="jumbotron-fluid">
+    <div class="row text-center white-text">
+        <div class="col-md-12 text-center">
+            <h1 class="white-header">Welcome To <span class="realed">realed!</span></h1>
+            <p class="white-header">View our properties from all over the world</p>
+            <a class="btn btn-primary btn-lg search-input" href="/campgrounds/new">Add New Property</a>
+            <p class="mt-3"><strong>OR</strong></p>
+            <form action="/campgrounds" method="GET" class="" id="campground-search">
+                <div class=" row form-group text-center">
+                    <input type="text" name="locationSearch" placeholder="Location" class="search-input rounded mb-3">
+                    <input type="number" name="roomSearch" placeholder="Rooms" class="search-input rounded mb-3"
+                        step="1" min="0">
+                    <input type="number" name="bathSearch" placeholder="Bathrooms" class="search-input rounded mb-3"
+                        step="1" min="0">
+                </div>
+                <input id="SubmitButton" type="submit" value="Search" class="btn btn-light">
+            </form>
+        </div>
+    </div>
+</header> -->
+
+<div id="map"></div>
+
+<div class="search-area mb-4">
+    <form action="/campgrounds" method="GET" class="form1" id="campground-search">
+        <div class="form-row">
+            <div class="col-sm-3">
+                <input type="text" name="locationSearch" placeholder="Location" class="search-input ">
+            </div>
+            <div class="col-sm-3">
+                <input type="number" name="roomSearch" placeholder="Rooms" class="search-input " step="1" min="0">
+            </div>
+            <div class="col-sm-3">
+                <input type="number" name="bathSearch" placeholder="Bathrooms" class="search-input " step="1" min="0">
+            </div>
+            <div class="col-sm-3">
+                <button id="SubmitButton" type="submit" value="Search" class="btn btn-light search-button">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+
+    <% if(error && error.length > 0){ %>
+    <div class="alert alert-danger mb-4" role="alert">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+    <div class="alert alert-success mb-4" role="alert">
+        <%= success %>
+    </div>
+    <% } %>
+</div>
+
+<div class="container">
+    <div class="row row-search text-center" id="campground-grid">
         <% campgrounds.forEach(function(campground){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src="<%= campground.image %>">
-                   <div class="caption">
-                       <h4><%= campground.name %></h4>
-                   </div>
-                   <p>
-                       <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
-                   </p>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.name %>">
+                <div class="card-body">
+                    <h5 class="card-title"><strong><%= campground.name %></strong></h5>
+                    <p class="location-p"><%= campground.location %></p>
+                    <p class="details mt-0">
+                        <i class="fas fa-bed pr-1"></i> <%= campground.rooms %>
+                        <i class="fas fa-shower pr-1 pl-3"></i> <%= campground.baths %>
+                        <i class="fas fa-arrows-alt pl-3"></i> <%= campground.meters %> m&sup2;
+                    </p>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary mt-3 button">More Info</a>
                 </div>
             </div>
+        </div>
         <% }); %>
     </div>
 
 
-<% include ../partials/footer %>
+    <script>
+        var locations = [];
+    <% campgrounds.forEach(function (campground) { %>
+
+        var lat = <%= campground.lat %>;
+            var lng = <%= campground.lng %>;
+
+            var contentString = `
+            <a href="/campgrounds/<%= campground._id %>"<strong><%= campground.name %></strong></a><br />
+            <p class="mt-1 mb-1"><%= campground.location %></p>
+            <p>
+                        <i class="fas fa-bed pr-1"></i> <%= campground.rooms %>
+                        <i class="fas fa-shower pr-1 pl-3"></i> <%= campground.baths %>
+                        <i class="fas fa-arrows-alt pr-1 pl-3"></i> <%= campground.meters %> m&sup2;
+                    </p>
+                    <img style="width: 180px";" src="<%= campground.image %>" alt="<%= campground.name %>">
+          `
+            locations.push([contentString, lat, lng]);
+        <% }); %>
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 5,
+                    center: new google.maps.LatLng(4.285210, -72.981680),
+                    scrollwheel: false,
+                    styles: [{ "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "color": "#444444" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2f2f2" }] }, { "featureType": "poi", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "saturation": -100 }, { "lightness": 45 }] }, { "featureType": "road.highway", "elementType": "all", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#46bcec" }, { "visibility": "on" }] }]
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker, i;
+
+                for (i = 0; i < locations.length; i++) {
+
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
+            };
+
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL5rRBceZtxIT2SnQM8wFKyLm2KWt1tNk&callback=initMap"></script>
+
+
+    <% include ../partials/footer %>
