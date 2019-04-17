@@ -37,7 +37,7 @@ cloudinary.config({
     cloud_name: 'dfesdiu1m',
     api_key: '594556956132896',
     // api_secret: 'E7zSsCbJYa9ClEe-tmksf1Q3-qE'
-    api_secret: CLOUDINARY_API_SECRET
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 //INDEX - show all campgrounds
