@@ -4,7 +4,7 @@ var Campground = require("../models/campground");
 var middleware = require("../middleware");
 var request = require("request");
 
-require('dotenv').config()
+// require('dotenv').config()
 
 // Google Maps Configuration
 var NodeGeocoder = require('node-geocoder');
