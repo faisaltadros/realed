@@ -89,14 +89,15 @@ span.usernameCap {
 }
 
 .btn-primary {
-    background-color: rgb(207, 0, 0);
-    border-color: rgb(207, 0, 0);
+    /* background-color: rgb(207, 0, 0); */
+    background-color: rgb(145, 145, 145);
+    border-color: rgb(145, 145, 145);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: rgb(168, 0, 0);
-    border-color: rgb(168, 0, 0);
+    background-color: rgb(184, 184, 184);
+    border-color: rgb(184, 184, 184);
     color: white;
 }
 
