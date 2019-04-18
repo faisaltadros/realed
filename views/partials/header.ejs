@@ -52,7 +52,7 @@
                 <% } else { %>
 
                 <li class="nav-item">
-                    <a href="/users/<%= currentUser.id %>" class="nav-link">Signed In As <%= currentUser.username %></a>
+                    <a href="/users/<%= currentUser.id %>" class="nav-link">Signed In As <span class=usernameCap><%= currentUser.username %></span></a>
                 </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">Logout</a>

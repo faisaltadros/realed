@@ -65,6 +65,13 @@ body {
     color: rgb(184, 184, 184); !important;
 }
 
+span.usernameCap:first-letter {
+    text-transform: uppercase !important;
+}
+span.usernameCap {
+    display:inline-block
+}
+
 .white-text {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 20px;
