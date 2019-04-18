@@ -4,7 +4,9 @@
 <head>
     <!-- Make site responsive on mobile/tablet -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YelpCamp</title>
+    <title>Realed - Properties from all over the world</title>
+    <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555108699/logo_sada.png"/>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/index.css">
@@ -21,23 +23,23 @@
                 src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555107462/flava.png" width="25" height="25"
                 alt="">
         </a>
-        <a class="navbar-brand mr-2" href="/campgrounds">realed</a>
+        <a class="navbar-brand mr-2" href="/listings">realed</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
-                    <a href="/campgrounds" class="nav-link">Home</a>
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'listings' ? 'active' : '' %>">
+                    <a href="/listings" class="nav-link">Home</a>
                 </li>
                 <% if(currentUser){ %>
                 <li class="nav-item">
-                    <a href="/campgrounds/new" class="nav-link add-property">Add New Property</a>
+                    <a href="/listings/new" class="nav-link add-property">Add New Property</a>
                 </li>
                 <% } else { %>
                 <li class="nav-item">
-                    <a href="/campgrounds/new" class="nav-link ">Add New Property</a>
+                    <a href="/listings/new" class="nav-link ">Add New Property</a>
                 </li>
                 <% } %>
             </ul>
@@ -69,7 +71,7 @@
             <div id="map"></div>
 
             <div class="search-area mb-4">
-                <form action="/campgrounds" method="GET" class="form1" id="campground-search">
+                <form action="/listings" method="GET" class="form1" id="campground-search">
                     <div class="form-row">
                         <div class="col-sm-3">
                             <input type="text" name="locationSearch" placeholder="Location" class="search-input ">
@@ -106,7 +108,7 @@
 
             <div class="container">
                 <div class="row row-search text-center" id="campground-grid">
-                    <% campgrounds.forEach(function(campground){ %>
+                    <% listings.forEach(function(campground){ %>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card">
                             <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.name %>">
@@ -118,7 +120,7 @@
                                     <i class="fas fa-shower pr-1 pl-3"></i> <%= campground.baths %>
                                     <i class="fas fa-arrows-alt pl-3"></i> <%= campground.meters %> m&sup2;
                                 </p>
-                                <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary mt-3 button">More
+                                <a href="/listings/<%= campground._id %>" class="btn btn-primary mt-3 button">More
                                     Info</a>
                             </div>
                         </div>
@@ -129,13 +131,13 @@
 
                 <script>
                     var locations = [];
-    <% campgrounds.forEach(function (campground) { %>
+    <% listings.forEach(function (campground) { %>
 
         var lat = <%= campground.lat %>;
                         var lng = <%= campground.lng %>;
 
                         var contentString = `
-            <a href="/campgrounds/<%= campground._id %>"<strong><%= campground.name %></strong></a><br />
+            <a href="/listings/<%= campground._id %>"<strong><%= campground.name %></strong></a><br />
             <p class="mt-1 mb-1"><%= campground.location %></p>
             <p>
                         <i class="fas fa-bed pr-1"></i> <%= campground.rooms %>

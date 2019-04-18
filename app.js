@@ -19,7 +19,7 @@ require('dotenv').config()
 
 //requiring routes
 var commentRoutes = require("./routes/comments"),
-   campgroundRoutes = require("./routes/campgrounds"),
+   campgroundRoutes = require("./routes/listings"),
    indexRoutes = require("./routes/index")
 
 // mongoose.connect("mongodb://localhost/yelp_camp_v10");
@@ -55,10 +55,10 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/listings", campgroundRoutes);
+app.use("/listings/:id/comments", commentRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, process.env.IP, function () {
-   console.log("The YelpCamp Server Has Started!");
+   console.log("The Realed Server Has Started!");
 });

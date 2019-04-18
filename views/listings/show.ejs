@@ -29,8 +29,8 @@
                             <%= moment(campground.createdAt).fromNow() %></em>
                     </p>
                     <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-                    <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-                    <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST"
+                    <a class="btn btn-xs btn-warning" href="/listings/<%= campground._id %>/edit">Edit</a>
+                    <form id="delete-form" action="/listings/<%= campground._id %>?_method=DELETE" method="POST"
                         class="delete-form">
                         <button class="btn btn-xs btn-danger">Delete</button>
                     </form>
@@ -64,7 +64,7 @@
                         <h4>Write your comment <span class="glyphicon glyphicon glyphicon-pencil"
                                 aria-hidden="true"></span>
                         </h4>
-                        <form id="add-comment-form" action="/campgrounds/<%= campground._id %>/comments" method="POST">
+                        <form id="add-comment-form" action="/listings/<%= campground._id %>/comments" method="POST">
                             <div class="form-group">
                                 <input class="form-control" type="text" disabled value="<%= currentUser.username %>">
                             </div>
@@ -122,7 +122,7 @@
 
                         <!--Delete comment button-->
                         <form id="delete-form"
-                            action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
+                            action="/listings/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
                             method="POST" style="display: inline;">
                             <button class="btn btn-xs btn-danger">Delete</button>
                         </form>
@@ -133,7 +133,7 @@
                                 <h4>Edit your comment <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </h4>
                                 <form id="edit-comment-form<%= comment._id %>"
-                                    action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=PUT"
+                                    action="/listings/<%= campground._id %>/comments/<%= comment._id %>?_method=PUT"
                                     method="POST">
                                     <div class="form-group">
                                         <input class="form-control" type="text" disabled

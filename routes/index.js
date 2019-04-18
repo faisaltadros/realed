@@ -41,7 +41,7 @@ router.post("/register", function (req, res) {
         }
         passport.authenticate("local")(req, res, function () {
             req.flash("success", "Successfully Signed Up! Nice to meet you " + req.body.username);
-            res.redirect("/campgrounds");
+            res.redirect("/listings");
         });
     });
 });
@@ -54,7 +54,7 @@ router.get("/login", function (req, res) {
 //handling login logic
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/campgrounds",
+        successRedirect: "/listings",
         failureRedirect: "/login",
         // failureFlash : true,
         // successFlash: 'Welcome to YelpCamp!'
@@ -65,7 +65,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout", function (req, res) {
     req.logout();
     req.flash("success", "Logged you out!");
-    res.redirect("/campgrounds");
+    res.redirect("/listings");
 });
 
 // forgot password
@@ -181,7 +181,7 @@ router.get('/forgot', function(req, res) {
         });
       }
     ], function(err) {
-      res.redirect('/campgrounds');
+      res.redirect('/listings');
     });
   });
 
@@ -190,14 +190,14 @@ router.get("/users/:id", function (req, res) {
     User.findById(req.params.id, function (err, foundUser) {
         if (err) {
             req.flash("error", "Something went wrong.");
-            res.redirect("/campgrounds");
+            res.redirect("/listings");
         }
-        Campground.find().where('author.id').equals(foundUser._id).exec(function (err, campgrounds) {
+        Campground.find().where('author.id').equals(foundUser._id).exec(function (err, listings) {
             if (err) {
                 req.flash("error", "Something went wrong.");
-                res.redirect("/campgrounds");
+                res.redirect("/listings");
             }
-            res.render("users/show", { user: foundUser, campgrounds: campgrounds });
+            res.render("users/show", { user: foundUser, listings: listings });
         });
     });
 });

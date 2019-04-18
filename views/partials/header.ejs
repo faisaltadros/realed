@@ -4,8 +4,8 @@
 <head>
     <!-- Make site responsive on mobile/tablet -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YelpCamp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <title>Realed - Properties from all over the world</title>
+    <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555108699/logo_sada.png"/>    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/main.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700" rel="stylesheet">
@@ -21,23 +21,23 @@
                 src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555107462/flava.png" width="25" height="25"
                 alt="">
         </a>
-        <a class="navbar-brand mr-2" href="/campgrounds">realed</a>
+        <a class="navbar-brand mr-2" href="/listings">realed</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
-                    <a href="/campgrounds" class="nav-link">Home</a>
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'listings' ? 'active' : '' %>">
+                    <a href="/listings" class="nav-link">Home</a>
                 </li>
                 <% if(currentUser){ %>
                 <li class="nav-item">
-                    <a href="/campgrounds/new" class="nav-link add-property">Add New Property</a>
+                    <a href="/listings/new" class="nav-link add-property">Add New Property</a>
                 </li>
                 <% } else { %>
                 <li class="nav-item">
-                    <a href="/campgrounds/new" class="nav-link ">Add New Property</a>
+                    <a href="/listings/new" class="nav-link ">Add New Property</a>
                 </li>
                 <% } %>
             </ul>

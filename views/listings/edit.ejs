@@ -2,7 +2,7 @@
 
 <div class="row text-center vertical-center">
     <div class="col-md-12">
-        <form class="form-signin " action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <form class="form-signin " action="/listings/<%= campground._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <img class="mb-4" src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555108699/logo_sada.png" alt=""
                 width="68.8" height="75.8">
             <h1 class="h3 mb-3 font-weight-normal">Edit "<%= campground.name %>"</h1>
@@ -54,7 +54,7 @@
                 <button class="btn btn-lg btn-primary btn-block">Submit!</button>
             </div>
         </form>
-        <a href="/campgrounds">Go Back</a>
+        <a href="/listings">Go Back</a>
     </div>
 </div>
 

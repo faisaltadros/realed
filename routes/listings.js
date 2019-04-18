@@ -40,7 +40,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-//INDEX - show all campgrounds
+//INDEX - show all listings
 router.get("/", function (req, res) {
     if (req.query.locationSearch && req.query.roomSearch && req.query.bathSearch) {
         const regexLocation = new RegExp(escapeRegex(req.query.locationSearch), 'gi');
@@ -51,13 +51,13 @@ router.get("/", function (req, res) {
                     { baths: { $gt: (req.query.bathSearch -0.1) } }, 
                     { rooms: { $gt: (req.query.roomSearch -0.1) } } 
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else if (req.query.locationSearch && req.query.roomSearch) {
@@ -68,13 +68,13 @@ router.get("/", function (req, res) {
                     {location: regexLocation}, 
                     { rooms: { $gt: (req.query.roomSearch -0.1) } } 
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else if (req.query.locationSearch && req.query.bathSearch) {
@@ -85,13 +85,13 @@ router.get("/", function (req, res) {
                     {location: regexLocation}, 
                     { baths: { $gt: (req.query.bathSearch -0.1) } } 
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else if (req.query.roomSearch && req.query.bathSearch) {
@@ -101,13 +101,13 @@ router.get("/", function (req, res) {
                     { rooms: { $gt: (req.query.roomSearch -0.1) } } ,
                     { baths: { $gt: (req.query.bathSearch -0.1)} } 
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     
@@ -118,13 +118,13 @@ router.get("/", function (req, res) {
                 [ 
                     {location: regexLocation}
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else if (req.query.roomSearch) {
@@ -133,13 +133,13 @@ router.get("/", function (req, res) {
                 [ 
                     { rooms: { $gt: (req.query.roomSearch -0.1) } } 
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else if (req.query.bathSearch) {
@@ -148,22 +148,22 @@ router.get("/", function (req, res) {
                 [ 
                     { baths: { $gt: (req.query.bathSearch -0.1) } }
                 ] 
-        }, function(err, allCampgrounds){
+        }, function(err, alllistings){
 
-            if (err || !allCampgrounds.length) {
-                req.flash('error', 'No campgrounds found. Please try again.');
+            if (err || !alllistings.length) {
+                req.flash('error', 'No listings found. Please try again.');
                 res.redirect("back");
             } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds' });
+                res.render("listings/index", { listings: alllistings, page: 'listings' });
             }
         });
     } else {
-    // Get all campgrounds from DB
-    Campground.find({}, function (err, allCampgrounds) {
+    // Get all listings from DB
+    Campground.find({}, function (err, alllistings) {
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds/index", { campgrounds: allCampgrounds });
+            res.render("listings/index", { listings: alllistings });
         }
     });
 }
@@ -171,7 +171,7 @@ router.get("/", function (req, res) {
 
 //CREATE - add new campground to DB
 router.post("/", middleware.isLoggedIn, upload.single('image'), function (req, res) {
-    // get data from form and add to campgrounds array
+    // get data from form and add to listings array
     var name = req.body.campground.name;
     var image = req.body.campground.image;
     var imageId = req.body.campground.imageId;
@@ -216,7 +216,7 @@ router.post("/", middleware.isLoggedIn, upload.single('image'), function (req, r
                     req.flash('error', err.message);
                     return res.redirect('back');
                 }
-                res.redirect('/campgrounds/' + campground.id);
+                res.redirect('/listings/' + campground.id);
             });
         });
     });
@@ -224,7 +224,7 @@ router.post("/", middleware.isLoggedIn, upload.single('image'), function (req, r
 
 //NEW - show form to create new campground
 router.get("/new", middleware.isLoggedIn, function (req, res) {
-    res.render("campgrounds/new");
+    res.render("listings/new");
 });
 
 // SHOW - shows more info about one campground
@@ -236,7 +236,7 @@ router.get("/:id", function (req, res) {
         } else {
             // console.log(foundCampground)
             //render show template with that campground
-            res.render("campgrounds/show", { campground: foundCampground });
+            res.render("listings/show", { campground: foundCampground });
         }
     });
 });
@@ -244,7 +244,7 @@ router.get("/:id", function (req, res) {
 // EDIT CAMPGROUND ROUTE
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function (req, res) {
     Campground.findById(req.params.id, function (err, foundCampground) {
-        res.render("campgrounds/edit", { campground: foundCampground });
+        res.render("listings/edit", { campground: foundCampground });
     });
 });
 
@@ -283,7 +283,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, upload.single('image'), 
                 campground.location = data[0].formattedAddress;
                 campground.save();
                 req.flash("success", "Successfully Updated!");
-                res.redirect("/campgrounds/" + campground._id);
+                res.redirect("/listings/" + campground._id);
             }
         });
     });
@@ -300,7 +300,7 @@ router.delete("/:id", middleware.checkCampgroundOwnership, function (req, res) {
             await cloudinary.v2.uploader.destroy(campground.imageId);
             campground.remove();
             req.flash("success", "Campground deleted successfully!")
-            res.redirect("/campgrounds");
+            res.redirect("/listings");
         } catch (err) {
             req.flash("error", err.message);
             return res.redirect("back");
