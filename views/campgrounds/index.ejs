@@ -160,7 +160,7 @@
                             var infowindow = new google.maps.InfoWindow();
 
                             for (i = 0; i < locations.length; i++) {
-                                var marker = new google.maps.Marker({
+                                marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                                     map: map
                                 });
@@ -184,7 +184,8 @@
                                 if (map.getZoom() > 16) map.setZoom(16);
                                 google.maps.event.removeListener(listener);
                             });
-                        };
+                        }
+
 
                 </script>
 
