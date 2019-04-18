@@ -8,12 +8,10 @@ var request = require("request");
 
 // Google Maps Configuration
 var NodeGeocoder = require('node-geocoder');
-var googleMapsApi = process.env.GEOCODER_API_KEY;
-console.log(process.env.GEOCODER_API_KEY)
 var options = {
     provider: 'google',
     httpAdapter: 'https',
-    apiKey: googleMapsApi,
+    apiKey: process.env.GEOCODER_API_KEY,
     formatter: null
 };
 var geocoder = NodeGeocoder(options);

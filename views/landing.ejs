@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>YelpCamp</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/landing.css">
-        <!-- <link rel="stylesheet" href="/stylesheets/main.css"> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
-        <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700" rel="stylesheet">
 
-    </head>
-    <body>
-    
+<head>
+    <title>YelpCamp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/landing.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/main.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"
+        async></script>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700" rel="stylesheet">
+
+</head>
+
+<body>
+
     <div class="container">
-        <% if(error && error.length > 0){ %>    
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
-            </div>
+        <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
         <% } %>
         <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
         <% } %>
     </div>
-    
+
     <div id="landing-header">
+        <div class="row text-center white-text-landing">
+            <div class="col-md-12 text-center">
+                <img class="mb-4" src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555107462/flava.png" alt=""
+                    width="68.8" height="75.8">
+                <h1 class="white-header">Welcome To <span class="realed">realed!</span></h1>
+                <p class="white-header">View our properties from all over the world</p>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                            <form class="form-signin " action="/campgrounds" method="GET" class="mb-2" id="campground-search">
+
+                                <input type="text" name="locationSearch" placeholder="Location"
+                                    class="search-input form-control">
+                                <input type="number" name="roomSearch" placeholder="Rooms"
+                                    class="search-input form-control" step="1" min="0">
+                                <input type="number" name="bathSearch" placeholder="Bathrooms"
+                                    class="search-input form-control" step="1" min="0">
+
+                                <button class="btn btn-light" type="submit" value="Search">Search</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div id="landing-header">
         <div class="row text-center white-text-landing">
             <div class="col-md-12 text-center">
                     <img class="mb-4" src="https://res.cloudinary.com/dfesdiu1m/image/upload/v1555107462/flava.png" alt=""
@@ -41,20 +71,18 @@
                     </div>
                     <input id="SubmitButton" type="submit" value="Search" class="btn btn-light">
                 </form>
-
-                
-
-                
             </div>
         </div>
-    </div>
+    </div> -->
 
-    
-    
+
+
+
+
     <ul class="slideshow">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
