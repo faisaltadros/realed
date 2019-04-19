@@ -1,152 +1,87 @@
-#YelpCamp
+<h1>Realed</h1>
 
-##Initial Setup
-* Add Landing Page
-* Add Campgrounds Page that lists all campgrounds
+> A Node.js web application project for listing real estate properties
 
-Each Campground has:
-   * Name
-   * Image
+<h2>Live Demo</h2>
 
-##Layout and Basic Styling
-* Create our header and footer partials
-* Add in Bootstrap
+To see the app in action, go to (https://realed.herokuapp.com)
 
-##Creating New Campgrounds
-* Setup new campground POST route
-* Add in body-parser
-* Setup route to show form
-* Add basic unstyled form
+<h2>Features</h2>
 
-##Style the campgrounds page
-* Add a better header/title
-* Make campgrounds display in a grid
+- Authentication:
+  
+  * User login with username and password
 
-##Style the Navbar and Form
-* Add a navbar to all templates
-* Style the new campground form
+  * Admin sign-up with admin code
 
-##Add Mongoose
-* Install and configure Mongoose
-* Setup campground model
-* Use campground model inside of our routes
+- Authorization:
 
-##Show Page
-* Review the RESTful routes we've seen so far
-* Add description to our campground model
-* Show db.collection.drop()
-* Add a show route/template
+  * One cannot manage posts and view user profile without being authenticated
 
-##Refactor Mongoose Code
-* Create a models directory
-* Use module.exports
-* Require everything correctly!
+  * One cannot edit or delete posts and comments created by other users
 
-##Add Seeds File
-* Add a seeds.js file
-* Run the seeds file every time the server starts
+  * Admin can manage all posts and comments
 
-##Add the Comment model!
-* Make our errors go away!
-* Display comments on campground show page
+- Manage campground posts with basic functionalities:
 
-##Comment New/Create
-* Discuss nested routes
-* Add the comment new and create routes
-* Add the new comment form
+  * Create, edit and delete posts and comments
 
-##Style Show Page
-* Add sidebar to show page
-* Display comments nicely
+  * Upload campground photos
 
-##Finish Styling Show Page
-* Add public directory
-* Add custom stylesheet
+  * Display campground location on Google Maps
+  
+  * Search existing campgrounds
 
-##Auth Pt. 1 - Add User Model
-* Install all packages needed for auth
-* Define User model 
+- Manage user account with basic functionalities:
 
-##Auth Pt. 2 - Register
-* Configure Passport
-* Add register routes
-* Add register template
+  * Password reset via email confirmation
 
-##Auth Pt. 3 - Login
-* Add login routes
-* Add login template
+  * Profile page setup with sign-up
 
-##Auth Pt. 4 - Logout/Navbar
-* Add logout route
-* Prevent user from adding a comment if not signed in
-* Add links to navbar
+- Flash messages responding to users' interaction with the app
 
-##Auth Pt. 5 - Show/Hide Links
-* Show/hide auth links in navbar 
+- Responsive web design
 
-##Refactor The Routes
-* Use Express router to reoragnize all routes
+<h2>Custom Enhancements</h2>
 
-##Users + Comments
-* Associate users and comments
-* Save author's name to a comment automatically
+* Update campground photos when editing campgrounds
 
-##Users + Campgrounds
-* Prevent an unauthenticated user from creating a campground
-* Save username+id to newly created campground
+* Query MongoDB with three seperate parameters (Location, Rooms, Bathrooms)
 
-# Editing Campgrounds
-* Add Method-Override
-* Add Edit Route for Campgrounds
-* Add Link to Edit Page
-* Add Update Route
+* Added a map to the index page which displays all listings and zooms in depending on search results
+ 
+<h2>Getting Started</h2>
 
-#Deleting Campgrounds
-* Add Destroy Route
-* Add Delete button
+> This app contains API secrets and passwords that have been hidden deliberately, so the app cannot be run with its features on your local machine. However, feel free to clone this repository if necessary.
 
-#Authorization Part 1: Campgrounds
-* User can only edit his/her campgrounds
-* User can only delete his/her campgrounds
-* Hide/Show edit and delete buttons
+<h2>Built With</h2>
 
-#Editing Comments
-* Add Edit route for comments
-* Add Edit button
-* Add Update route
+<h3>Front End</h3>
 
-<!--/campgrounds/:id/edit-->
-<!--/campgrounds/:id/comments/:comment_id/edit-->
+* [ejs](http://ejs.co/)
+* [Google Maps APIs](https://developers.google.com/maps/)
+* [Bootstrap](https://getbootstrap.com/docs/3.3/)
 
-#Deleting Comments
-* Add Destroy route
-* Add Delete button
+<h3>Back End</h3>
 
-#Authorization Part 2: Comments
-* User can only edit his/her comments
-* User can only delete his/her comments
-* Hide/Show edit and delete buttons
-* Refactor Middleware
+* [express](https://expressjs.com/)
+* [mongoDB](https://www.mongodb.com/)
+* [mongoose](http://mongoosejs.com/)
+* [async](http://caolan.github.io/async/)
+* [crypto](https://nodejs.org/api/crypto.html#crypto_crypto)
+* [helmet](https://helmetjs.github.io/)
+* [passport](http://www.passportjs.org/)
+* [passport-local](https://github.com/jaredhanson/passport-local#passport-local)
+* [express-session](https://github.com/expressjs/session#express-session)
+* [method-override](https://github.com/expressjs/method-override#method-override)
+* [nodemailer](https://nodemailer.com/about/)
+* [moment](https://momentjs.com/)
+* [cloudinary](https://cloudinary.com/)
+* [geocoder](https://github.com/wyattdanger/geocoder#geocoder)
+* [connect-flash](https://github.com/jaredhanson/connect-flash#connect-flash)
 
-#Adding in Flash!
-* Demo working version
-* Install and configure connect-flash
-* Add bootstrap alerts to header
+<h2>Platforms</h2>
 
-
-RESTFUL ROUTES
-
-name      url      verb    desc.
-===============================================
-INDEX   /dogs      GET   Display a list of all dogs
-NEW     /dogs/new  GET   Displays form to make a new dog
-CREATE  /dogs      POST  Add new dog to DB
-SHOW    /dogs/:id  GET   Shows info about one dog
-
-INDEX   /campgrounds
-NEW     /campgrounds/new
-CREATE  /campgrounds
-SHOW    /campgrounds/:id
-
-NEW     campgrounds/:id/comments/new    GET
-CREATE  campgrounds/:id/comments      POST
+* [Cloudinary](https://cloudinary.com/)
+* [Heroku](https://www.heroku.com/)
+* [Cloud9](https://aws.amazon.com/cloud9/?origin=c9io)
