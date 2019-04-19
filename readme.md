@@ -1,10 +1,16 @@
 <h1>Realed</h1>
 
-> A Node.js web application project for listing real estate properties
+> A Node.js web application project for listing real estate properties. 
+
+During a Web Development Bootcamp, I worked to built a web application Yelpcamp, which was a similar concept to yelp but specific to campgrounds. After completing the Bootcamp I worked to refactor the application I built, to make it into my own idea of listing real estate properties for sellers and potential buyers to connect.
 
 <h2>Live Demo</h2>
 
 To see the app in action, go to (https://realed.herokuapp.com)
+
+<h2>Design</h2>
+
+RESTful ROUTES: a mapping between HTTP routes and CRUD
 
 <h2>Features</h2>
 
