@@ -22,15 +22,15 @@ To see the app in action, go to (https://realed.herokuapp.com)
 
   * Admin can manage all posts and comments
 
-- Manage campground posts with basic functionalities:
+- Manage listings posts with basic functionalities:
 
   * Create, edit and delete posts and comments
 
-  * Upload campground photos
+  * Upload listing photos
 
-  * Display campground location on Google Maps
+  * Display listing location on Google Maps
   
-  * Search existing campgrounds
+  * Search existing listings
 
 - Manage user account with basic functionalities:
 
@@ -44,7 +44,7 @@ To see the app in action, go to (https://realed.herokuapp.com)
 
 <h2>Custom Enhancements</h2>
 
-* Update campground photos when editing campgrounds
+* Update listing photos when editing listings
 
 * Query MongoDB with three seperate parameters (Location, Rooms, Bathrooms)
 
